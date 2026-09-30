@@ -1,0 +1,40 @@
+{
+  "name": "genpark-enterprise-compliance-pii-redaction-sentinel-skill",
+  "version": "1.0.0",
+  "description": "Enterprise Regulatory Compliance & Multi-Pattern PII Redaction Sentinel (inspired by Tencent Cloud Data Governance & GDPR/HIPAA Enterprise Policies). Detects and sanitizes personally identifiable information, financial account numbers, JWT tokens, and cryptographic keys using deterministic zero-leakage masking.",
+  "tools": [
+    {
+      "name": "redact_enterprise_compliance_data",
+      "description": "Enterprise compliance sanitization: scan text for PII/secrets, redact credit cards, social security numbers, API tokens, and generate audit compliance certificates.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "sanitize_text_stream",
+              "scan_compliance_violations",
+              "generate_compliance_certificate"
+            ],
+            "description": "Compliance redaction action."
+          },
+          "text_content": {
+            "type": "string",
+            "description": "Raw enterprise text, log stream, or document content to scan."
+          },
+          "mask_character": {
+            "type": "string",
+            "description": "Character used for masking (default '*')."
+          },
+          "strict_mode": {
+            "type": "boolean",
+            "description": "If true, also masks high-entropy candidate secrets."
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  ]
+}
